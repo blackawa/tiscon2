@@ -6,7 +6,9 @@ import javax.transaction.Transactional;
 import enkan.component.doma2.DomaProvider;
 import enkan.data.Flash;
 import enkan.data.HttpResponse;
+import enkan.data.Session;
 import kotowari.component.TemplateEngine;
+import net.unit8.sigcolle.auth.LoginUserPrincipal;
 import net.unit8.sigcolle.dao.CampaignDao;
 import net.unit8.sigcolle.dao.SignatureDao;
 import net.unit8.sigcolle.form.CampaignForm;
@@ -68,10 +70,16 @@ public class CampaignController {
      * @return HttpResponse
      */
     @Transactional
-    public HttpResponse sign(SignatureForm form) {
+    public HttpResponse sign(SignatureForm form, Session session) {
         if (form.hasErrors()) {
             return showCampaign(form.getCampaignIdLong(), form, null);
         }
+
+        System.out.println("========================");
+        LoginUserPrincipal principal = (LoginUserPrincipal) session.get("principal");
+        System.out.println(principal.getUserName());
+        System.out.println("========================");
+
         Signature signature = builder(new Signature())
                 .set(Signature::setCampaignId, form.getCampaignIdLong())
                 .set(Signature::setName, form.getName())

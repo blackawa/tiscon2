@@ -28,6 +28,7 @@ import enkan.middleware.devel.HttpStatusCatMiddleware;
 import enkan.middleware.devel.StacktraceMiddleware;
 import enkan.middleware.devel.TraceWebMiddleware;
 import enkan.middleware.doma2.DomaTransactionMiddleware;
+import enkan.middleware.session.JCacheStore;
 import enkan.security.backend.SessionBackend;
 import enkan.system.inject.ComponentInjector;
 import kotowari.middleware.ControllerInvokerMiddleware;
@@ -90,7 +91,10 @@ public class SigColleApplicationFactory implements ApplicationFactory {
         app.use(new NormalizationMiddleware());
         app.use(new NestedParamsMiddleware());
         app.use(new CookiesMiddleware());
-        app.use(new SessionMiddleware());
+        app.use(builder(new SessionMiddleware())
+                // sessionに格納したprincipalを取り出してcastできるようにするためデフォルトから変える.
+                .set(SessionMiddleware::setStore, new JCacheStore())
+                .build());
         app.use(new FlashMiddleware());
         app.use(new ContentNegotiationMiddleware());
 

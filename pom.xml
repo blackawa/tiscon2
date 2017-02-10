@@ -144,5 +144,10 @@
             <artifactId>pegdown</artifactId>
             <version>1.6.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.jsr107.ri</groupId>
+            <artifactId>cache-ri-impl</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 </project>
