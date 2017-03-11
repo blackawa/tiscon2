@@ -17,6 +17,9 @@ public interface CampaignDao {
     Campaign selectById(Long campaignId);
 
     @Select
+    Campaign selectByUserId(Long createUserId);
+
+    @Select
     List<Campaign> selectAll();
 
     @Insert
