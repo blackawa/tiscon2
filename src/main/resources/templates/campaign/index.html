@@ -21,17 +21,21 @@ xmlns:th="http://www.thymeleaf.org">
                 <div class="ui positive message" th:if="${message != null}">
                     <div class="header" th:text="${message}">Thank you</div>
                 </div>
-
+                <h1 class="ui center aligned header" th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h1>
+                <h1 class="ui center aligned header" th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h1>
+                <p>
+                    <button class="ui fluid blue button" th:if="${(signatureCount>=campaign.goal)}">送信</button>
+                </p>
                 <div class="ui grid">
                     <div class="ten wide column">
                         <div class="statement" th:utext="${campaign.statement}" ></div>
+                        <p>
+                        <button class="ui fluid gray button" >コメント一覧</button>
+                        </p>
                     </div>
                     <div class="six wide column">
-                        <h2 th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h2>
-                        <h2 th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h2>
-                        <p>
-                            <button class="ui fluid red button" th:if="${(signatureCount>=campaign.goal)}">送信</button>
-                        </p>
+
+
 
                         <p>
                             <span th:text="${signatureCount}">345</span>人の賛同
