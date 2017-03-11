@@ -17,11 +17,9 @@
             </div>
             <div class="ui information container center aligned ">
                 <h1 class="ui header">SIG COLLE</h1>
-                <h2>キャンペーン一覧</h2>
+                <h2>マイキャンペーン一覧</h2>
                 <div th:each="campaign : ${campaigns}">
-
                     <a class="campaigns" th:href="@{~/campaign/{id}(id=${campaign.campaignId})}" th:text="${campaign.title}">title</a>
-
                 </div>
             </div>
         </div>
