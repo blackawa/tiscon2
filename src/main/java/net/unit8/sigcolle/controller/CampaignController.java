@@ -118,7 +118,7 @@ public class CampaignController {
         //Databaseに登録
         campaignDao.insert(model);
         HttpResponse response = redirect("/campaign/" + model.getCampaignId(), SEE_OTHER);
-        response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
+        response.setFlash(new Flash<>("キャンペーンを作成しました！"));
 
         return response;
     }
@@ -131,7 +131,8 @@ public class CampaignController {
      * @param session ログインしているユーザsession
      */
     public HttpResponse listCampaigns(Session session) {
-        //return response;
+        //return templateEngine.render("campaign/new", "form", new CampaignCreateForm());
+
         throw new UnsupportedOperationException("実装してください !!");
     }
 
