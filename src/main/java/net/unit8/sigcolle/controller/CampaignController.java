@@ -109,10 +109,14 @@ public class CampaignController {
         Campaign model = new Campaign();
         model.setStatement(processor.markdownToHtml(form.getStatement()));
         model.setCreateUserId(principal.getUserId());
-
+        //setTitle
+        model.setTitle(form.getTitle());
+        //Longに変換しsetGoal
+        model.setGoal(parseLong(form.getGoal()));
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
-
+        //Databaseに登録
+        campaignDao.insert(model);
         HttpResponse response = redirect("/campaign/" + model.getCampaignId(), SEE_OTHER);
         response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
 
