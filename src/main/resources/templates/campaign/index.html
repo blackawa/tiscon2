@@ -27,16 +27,28 @@ xmlns:th="http://www.thymeleaf.org">
                         <div class="statement" th:utext="${campaign.statement}" ></div>
                     </div>
                     <div class="six wide column">
-                        <h2>今すぐ賛同</h2>
+                        <h2 th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h2>
+                        <h2 th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h2>
+                        <p>
+                            <button class="ui fluid red button" th:if="${(signatureCount>=campaign.goal)}">送信</button>
+                        </p>
+
                         <p>
                             <span th:text="${signatureCount}">345</span>人の賛同
                         </p>
                         <div class="ui red progress">
-                            <div class="bar" th:style="${'width:' + (signatureCount * 100 / campaign.goal) + '%'}"></div>
+                            <div class="bar" th:style="${'width:' + (signatureCount * 100 / campaign.goal) + '%'}" th:if="${(signatureCount<campaign.goal)}"></div>
+                            <div class="bar" th:style="${'width:' + 100  + '%'}" th:if="${(signatureCount>=campaign.goal)}"></div>
                         </div>
-                        <p>
+
+
+
+                        <p th:if="${(signatureCount<campaign.goal)}">
                             <span th:text="${campaign.goal}">1000</span>人まで残り
-                            <span th:text="${campaign.goal - signatureCount}">1</span>人の賛同者が必要です！
+
+                            <span th:text="${campaign.goal - signatureCount}" th:if="${(signatureCount<campaign.goal)}">1</span>人の賛同者が必要です！
+
+
                         </p>
 
                         <form class="ui form" method="post" th:action="@{~/campaign/{id}(id=${campaign.campaignId})}" th:classappend="${signature.hasErrors()} ? 'error'">
