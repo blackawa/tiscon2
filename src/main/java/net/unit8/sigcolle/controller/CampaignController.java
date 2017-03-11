@@ -112,13 +112,13 @@ public class CampaignController {
         //setTitle
         model.setTitle(form.getTitle());
         //Longに変換しsetGoal
-        model.setGoal(parseLong(form.getGoal()));
+        model.setGoal(Long.parseLong(form.getGoal()));
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
         //Databaseに登録
         campaignDao.insert(model);
         HttpResponse response = redirect("/campaign/" + model.getCampaignId(), SEE_OTHER);
-        response.setFlash(new Flash<>(""/* TODO: キャンペーンが新規作成できた旨のメッセージを生成する */));
+        response.setFlash(new Flash<>("新しいキャンペーンを作成しました"));
 
         return response;
     }
@@ -131,7 +131,8 @@ public class CampaignController {
      * @param session ログインしているユーザsession
      */
     public HttpResponse listCampaigns(Session session) {
-        throw new UnsupportedOperationException("実装してください !!");
+       throw new UnsupportedOperationException("実装してください !!");
+
     }
 
     private HttpResponse showCampaign(Long campaignId,
@@ -153,4 +154,6 @@ public class CampaignController {
                 "message", message
         );
     }
+
+
 }
