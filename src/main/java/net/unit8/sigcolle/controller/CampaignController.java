@@ -112,7 +112,7 @@ public class CampaignController {
         //setTitle
         model.setTitle(form.getTitle());
         //Longに変換しsetGoal
-        model.setGoal(parseLong(form.getGoal()));
+        model.setGoal(Long.parseLong(form.getGoal()));
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
         // TODO Databaseに登録する
         //Databaseに登録
@@ -131,6 +131,7 @@ public class CampaignController {
      * @param session ログインしているユーザsession
      */
     public HttpResponse listCampaigns(Session session) {
+        //return response;
         throw new UnsupportedOperationException("実装してください !!");
     }
 
