@@ -22,9 +22,24 @@ xmlns:th="http://www.thymeleaf.org">
                 </div>
                 <h1 class="ui center aligned header" th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h1>
                 <h1 class="ui center aligned header" th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h1>
+
+                <!--メッセージフォーム追加-->
+                <div th:if="${(signatureCount>=campaign.goal)}">
+                    <form class="ui form" method="post" action="/test/">
+                        <div class="field">
+                            <label>メッセージ</label>
+                            <textarea rows="2" name="message" placeholder="メッセージ"></textarea>
+                        </div>
+                        <p>
+                            <button class="ui fluid blue button" onclick="alert(' メッセージを送信しました ')">送信する</button>
+                        </p>
+                    </form>
+                </div>
+                <!--送信ボタン
                 <p>
                     <button class="ui fluid blue button" th:if="${(signatureCount>=campaign.goal)}">送信</button>
                 </p>
+                -->
                 <div class="ui grid">
                     <div class="ten wide column">
                         <div class="statement" th:utext="${campaign.statement}" ></div>
@@ -33,29 +48,6 @@ xmlns:th="http://www.thymeleaf.org">
                         </p>
                     </div>
                     <div class="six wide column">
-                        <h2 th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h2>
-                        <h2 th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h2>
-                        <!--<p>
-                            <button class="ui fluid red button" th:if="${(signatureCount>=campaign.goal)}" onclick="alert('我々の願いは達成された...')">送信</button>
-                        </p>-->
-
-                        <!-- >メッセージフォームを追加< -->
-                        <div class="message" th:if="${(signatureCount>=campaign.goal)}">
-                            <form action="/test.ne.jp/" method="post">
-                                <div>
-                                    <label for="msg">メッセージ:</label>
-                                    <textarea id="msg"></textarea>
-                                </div>
-                                <div class="button">
-                                    <button type="submit" onclick="alert('メッセージを送信しました')">送信</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- >メッセージフォームを追加< -->
-
-
-
-
                         <p>
                             <span th:text="${signatureCount}">345</span>人の賛同
                         </p>
@@ -63,9 +55,6 @@ xmlns:th="http://www.thymeleaf.org">
                             <div class="bar" th:style="${'width:' + (signatureCount * 100 / campaign.goal) + '%'}" th:if="${(signatureCount<campaign.goal)}"></div>
                             <div class="bar" th:style="${'width:' + 100  + '%'}" th:if="${(signatureCount>=campaign.goal)}"></div>
                         </div>
-
-
-
                         <p th:if="${(signatureCount<campaign.goal)}">
                             <span th:text="${campaign.goal}">1000</span>人まで残り
 
@@ -83,7 +72,7 @@ xmlns:th="http://www.thymeleaf.org">
                             </div>
                             <div class="field" th:classappend="${signature.hasErrors('signatureComment')} ? 'error'">
                                 <label>コメント(任意)</label>
-                                <textarea name="signatureComment" placeholder="コメント（任意）" th:value="${signature.signatureComment}"></textarea>
+                                <textarea rows="4" name="signatureComment" placeholder="コメント（任意）" th:value="${signature.signatureComment}"></textarea>
                                 <ul class="ui pointing red basic label" th:if="${signature.hasErrors('signatureComment')}">
                                     <li th:each="message : ${signature.getErrors('signatureComment')}" th:text="${message}"></li>
                                 </ul>
