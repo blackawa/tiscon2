@@ -5,6 +5,7 @@ import net.unit8.sigcolle.model.User;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Insert;
 import org.seasar.doma.Select;
+import org.seasar.doma.Update;
 
 /**
  * @author takahashi
@@ -13,6 +14,9 @@ import org.seasar.doma.Select;
 public interface UserDao {
     @Insert
     int insert(User user);
+
+    @Update
+    int update(User user);
 
     @Select
     User selectByUserId(Long userId);

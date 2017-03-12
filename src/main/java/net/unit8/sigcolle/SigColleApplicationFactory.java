@@ -18,6 +18,7 @@ import kotowari.middleware.*;
 import kotowari.middleware.serdes.ToStringBodyWriter;
 import kotowari.routing.Routes;
 import net.unit8.sigcolle.controller.*;
+import org.h2.command.dml.Update;
 
 import java.util.Collections;
 
@@ -48,7 +49,9 @@ public class SigColleApplicationFactory implements ApplicationFactory {
             // authenticated(see middleware configuration)
             r.get("/auth/campaign").to(CampaignController.class, "newCampaign");
             r.post("/auth/campaign").to(CampaignController.class, "create");
+            r.post( "/auth/update" ).to(UpdateController.class, "updateUser");
             r.get("/auth/user/campaigns").to(CampaignController.class, "listCampaigns");
+            r.get("/auth/update").to(UpdateController.class, "listUsers");
         }).compile();
 
         app.use(new DefaultCharsetMiddleware());
