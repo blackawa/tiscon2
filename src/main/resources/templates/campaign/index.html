@@ -25,7 +25,7 @@ xmlns:th="http://www.thymeleaf.org">
 
                 <!--メッセージフォーム追加-->
                 <div th:if="${(signatureCount>=campaign.goal)}">
-                    <form class="ui form" method="post" action="/test/">
+                    <form class="ui form" method="post" th:action="@{~/campaign/{id}(id=${campaign.campaignId})}">
                         <div class="field">
                             <label>メッセージ</label>
                             <textarea rows="2" name="message" placeholder="メッセージ"></textarea>
@@ -80,7 +80,7 @@ xmlns:th="http://www.thymeleaf.org">
                                     <li th:each="message : ${signature.getErrors('signatureComment')}" th:text="${message}"></li>
                                 </ul>
                             </div>
-                            <button class="ui fluid red button" onclick="alert(' 賛同ありがとうございますm(_ _)m ')">賛同する</button>
+                            <button class="ui fluid red button">賛同する</button>
                         </form>
                     </div>
                 </div>
