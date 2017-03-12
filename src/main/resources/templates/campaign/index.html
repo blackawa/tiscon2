@@ -36,6 +36,26 @@ xmlns:th="http://www.thymeleaf.org">
 
                     </div>
                     <div class="six wide column">
+                        <h2 th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h2>
+                        <h2 th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h2>
+                        <!--<p>
+                            <button class="ui fluid red button" th:if="${(signatureCount>=campaign.goal)}" onclick="alert('我々の願いは達成された...')">送信</button>
+                        </p>-->
+
+                        <!-- >メッセージフォームを追加< -->
+                        <div class="message" th:if="${(signatureCount>=campaign.goal)}">
+                            <form action="/test.ne.jp/" method="post">
+                                <div>
+                                    <label for="msg">メッセージ:</label>
+                                    <textarea id="msg"></textarea>
+                                </div>
+                                <div class="button">
+                                    <button type="submit" onclick="alert('メッセージを送信しました')">送信</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- >メッセージフォームを追加< -->
+
 
 
 
@@ -71,7 +91,7 @@ xmlns:th="http://www.thymeleaf.org">
                                     <li th:each="message : ${signature.getErrors('signatureComment')}" th:text="${message}"></li>
                                 </ul>
                             </div>
-                            <button class="ui fluid red button">賛同する</button>
+                            <button class="ui fluid red button" onclick="alert(' 賛同ありがとうございますm(_ _)m ')">賛同する</button>
                         </form>
                     </div>
                 </div>
