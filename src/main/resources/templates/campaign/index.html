@@ -29,8 +29,11 @@ xmlns:th="http://www.thymeleaf.org">
                     <div class="ten wide column">
                         <div class="statement" th:utext="${campaign.statement}" ></div>
                         <p>
-                        <button class="ui fluid gray button" >コメント一覧</button>
+                        <form method="get" th:action="@{~/campaign/{id}/signatures(id=${campaign.campaignId})}" >
+                            <button class="ui fluid gray button" >コメント一覧</button>
+                        </form>
                         </p>
+
                     </div>
                     <div class="six wide column">
 
