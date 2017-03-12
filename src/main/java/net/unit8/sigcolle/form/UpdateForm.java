@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  * Created by Shigeo KANEDA on 2017/03/12.
  */
 @Data
-public class UpdateForm {
+public class UpdateForm extends FormBase {
     @NotNull
     @Length(min = 1, max = 50)
     @Email
