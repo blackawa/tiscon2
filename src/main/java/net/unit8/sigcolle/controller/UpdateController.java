@@ -45,6 +45,8 @@ public class UpdateController {
     public HttpResponse updateUser(UpdateForm form, Session session) {
         UserDao userDao = domaProvider.getDao(UserDao.class);
 
+        LoginController logincon = new LoginController();
+
         LoginUserPrincipal principal = (LoginUserPrincipal) session.get("principal");
 
         User user = new User();
@@ -66,7 +68,9 @@ public class UpdateController {
 //                new LoginUserPrincipal(loginUser.getUserId(), loginUser.getLastName() + " " + loginUser.getFirstName())
 //        );
 
-        HttpResponse response = redirect("/", SEE_OTHER);
+
+
+        HttpResponse response = logincon.logout(session);
         //response.setSession(session);
         return response;
     }
