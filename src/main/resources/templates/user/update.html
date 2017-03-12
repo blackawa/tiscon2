@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Signature Collection</title>
+    <link href="http://fonts.googleapis.com/css?family=Exo:900" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet"/>
+    <link href="/css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="pusher">
+    <div th:replace="/shared/_header::header"></div>
+
+    <div class="full height image">
+        <div class="ui main container">
+            <div class="ui information container">
+                <div class="ui middle aligned center aligned grid">
+                    <div class="center column">
+                        <div class="ui segment">
+                            <h1 class="ui center aligned header">ユーザー情報変更</h1>
+　　　　　　　　　　　　　　<div th:each="user : ${users}">
+                            <form  class="ui form"  method="post" action="/auth/update">
+                                <div class="field">
+                                    <input type="text" name="lastname" placeholder="氏" th:value="${user.lastName}" readonly />
+                                    <input type="text" name="firstname" placeholder="名" th:value="${user.firstName}" readonly/>
+                                    <input type="email" name="email" placeholder="email" th:value="${user.email}" />
+                                    <input type="password" name="password" placeholder="password" th:value="${user.pass}" />
+                                </div>
+                                <button class="ui fluid red button">更新</button>
+                            </form>
+                           </div>
+                        </div>
+                        <a href="/login" class="register">アカウントをお持ちの方はこちら</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
