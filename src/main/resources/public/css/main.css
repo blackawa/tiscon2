@@ -29,6 +29,16 @@ div.center.column {
   padding: 10pt;
 }
 
+/*メッセージフォーム背景を追加しました*/
+.message {
+  background-color: rgba(255,255,255,.5);
+  padding: 10pt;
+}
+
+.button {
+    /* ボタンを他のテキストフィールドと同じ場所に置く */
+    padding-left: 90px; /* label 要素と同じサイズ */
+}
 
 .register {
   color:#0066CC;
