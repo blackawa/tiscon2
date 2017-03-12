@@ -10,7 +10,6 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="pusher">
     <div th:replace="/shared/_header::header"></div>
-
     <div class="full height image">
         <div class="ui main container">
             <div class="ui information container">
@@ -21,18 +20,17 @@ xmlns:th="http://www.thymeleaf.org">
                 <div class="ui positive message" th:if="${message != null}">
                     <div class="header" th:text="${message}">Thank you</div>
                 </div>
-
+                <h1 class="ui center aligned header" th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h1>
+                <h1 class="ui center aligned header" th:if="${(signatureCount>=campaign.goal)}">賛同者が集まりました！</h1>
+                <p>
+                    <button class="ui fluid blue button" th:if="${(signatureCount>=campaign.goal)}">送信</button>
+                </p>
                 <div class="ui grid">
                     <div class="ten wide column">
-
                         <div class="statement" th:utext="${campaign.statement}" ></div>
-
-                        <div class="com">
-                        <p>コメント</p>
-                        <p>・いいいいい</p>
-                        <p>・ううううう</p>
-                        </div>
-
+                        <p>
+                        <button class="ui fluid gray button" >コメント一覧</button>
+                        </p>
                     </div>
                     <div class="six wide column">
                         <h2 th:if="${(signatureCount<campaign.goal)}">今すぐ賛同</h2>
