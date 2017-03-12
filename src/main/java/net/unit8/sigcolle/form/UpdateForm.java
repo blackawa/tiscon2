@@ -15,6 +15,14 @@ import javax.validation.constraints.NotNull;
 @Data
 public class UpdateForm extends FormBase {
     @NotNull
+    @Length(min = 1, max = 20)
+    private String firstName;
+
+    @NotNull
+    @Length(min = 1, max = 20)
+    private String lastName;
+
+    @NotNull
     @Length(min = 1, max = 50)
     @Email
     private String email;

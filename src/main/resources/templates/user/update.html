@@ -22,18 +22,12 @@
 　　　　　　　　　　　　　　<div th:each="user : ${users}">
                             <form  class="ui form"  method="post" action="/auth/update">
                                 <div class="field">
-                                    <input type="text" placeholder="last name" th:value="${user.lastName}" disabled>
-                                </div>
-                                <div class="field">
-                                    <input type="text" placeholder="first name" th:value="${user.firstName}" disabled>
-                                </div>
-                                <div class="field">
+                                    <input type="text" name="lastName" placeholder="氏" th:value="${user.lastName}"  />
+                                    <input type="text" name="firstName" placeholder="名" th:value="${user.firstName}" />
                                     <input type="email" name="email" placeholder="email" th:value="${user.email}" />
-                                </div>
-                                <div class="field">
                                     <input type="password" name="pass" placeholder="password" th:value="${user.pass}" />
                                 </div>
-                                <button class="ui fluid red button">更新</button>
+                                <button class="ui fluid red button" >更新</button>
                             </form>
                            </div>
                         </div>
